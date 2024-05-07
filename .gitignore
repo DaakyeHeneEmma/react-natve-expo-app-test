@@ -9,6 +9,8 @@ node_modules/
 android/
 dist/
 web-build/
+app/libs/certs/
+eas.json
 
 # Native
 *.orig.*
