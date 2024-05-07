@@ -7,7 +7,7 @@ const config:any = {
       "Content-Type": "application/json",
       'Access-Control-Allow-Origin': '*',
       // "User-Agent":mtlsCert(),
-      Authorization:mtlsCert(),
+      // "Authorization":mtlsCert(),
     }
 }
 

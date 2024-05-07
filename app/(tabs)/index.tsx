@@ -49,6 +49,7 @@ const Fetcher = memo(function Fetcher(){
     </View>
   );
 })
+export default Home
 
 const styles = StyleSheet.create({
   container: {
