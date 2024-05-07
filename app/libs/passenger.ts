@@ -20,10 +20,10 @@ const fetchData = async (url = URL) => {
   const data = response.data;
   const allData = data.results;
 
-  if (data.next) {
-    const moreData = await fetchData(data.next);
-    await allData.push(...moreData);
-  }
+  // if (data.next) {
+  //   const moreData = await fetchData(data.next);
+  //   await allData.push(...moreData);
+  // }
 
   return await allData;
 };

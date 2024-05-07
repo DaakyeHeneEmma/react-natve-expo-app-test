@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { ActivityIndicator, FlatList } from 'react-native';
 import { Text, View } from '@/components/Themed';
 
@@ -12,14 +12,18 @@ const LoadingScreen = () => {
   );
 };
 
+const Fetcher = memo(function Fetcher(){
+  console.log("Fetcher Called")
+  return <Text style={styles.title}>Passengers</Text>
+})
 
-export default function Home() {
+
+ const Home =  memo(function Home(){
   const [users, setUsers] = useState([]);
 
   useEffect(()=>{
     const fetcted = async() =>{
         try {
-        // const response:any = await axios.get('/api/test');
         const response = await fetch('/api/test').then((data)=>data.json())
         setUsers(response)
       } catch (error) {
@@ -31,7 +35,7 @@ export default function Home() {
   
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Passengers</Text>
+      <Fetcher />
       {users.length === 0 && <LoadingScreen />}
       <FlatList
         data={users}
@@ -44,7 +48,7 @@ export default function Home() {
       />
     </View>
   );
-}
+})
 
 const styles = StyleSheet.create({
   container: {
