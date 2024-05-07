@@ -1,20 +1,22 @@
 import mtlsCert from "./mtls";
 import axios from "axios";
 
-
-const headers =  {
-    "method": "GET",
-    "Content-Type": "application/json",
-    'Access-Control-Allow-Origin': '*',
-    // "User-Agent":mtlsCert(),
-  }
+const config:any = {
+ headers :  {
+      "method": "GET",
+      "Content-Type": "application/json",
+      'Access-Control-Allow-Origin': '*',
+      // "User-Agent":mtlsCert(),
+      Authorization:mtlsCert(),
+    }
+}
 
   const URL = process.env.EXPO_PUBLIC_SIT_API_DOMAIN+`/passenger/`
   
 //parser for Passenger Users
 
 const fetchData = async (url = URL) => {
-  const response = await axios.get(url, headers);
+  const response = await axios.get(url, config);
   const data = response.data;
   const allData = data.results;
 

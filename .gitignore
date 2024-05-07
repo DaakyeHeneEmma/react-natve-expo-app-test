@@ -11,6 +11,7 @@ dist/
 web-build/
 app/libs/certs/
 eas.json
+app/(tabs)/ServiceGenerator.java
 
 # Native
 *.orig.*
