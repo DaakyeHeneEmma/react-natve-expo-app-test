@@ -1,17 +1,18 @@
 import { StyleSheet } from 'react-native';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { ActivityIndicator } from 'react-native';
 import { Text, View } from '@/components/Themed';
 
-const LoadingScreen = () => {
-  return (
-    <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" color="#0000ff" />
-    </View>
-  );
-};
+import mtlsCert from '../libs/mtls';
 
+const headers =  {
+  "method": "GET",
+  "Content-Type": "application/json",
+  'Access-Control-Allow-Origin': '*',
+  "User-Agent":mtlsCert(),
+}
+
+const URL = process.env.EXPO_PUBLIC_SIT_API_DOMAIN+`/passenger/`
+const URL2 ='https://jsonplaceholder.typicode.com/todos/'
 
 export default function Home() {
   const [users, setUsers] = useState([]);
@@ -19,8 +20,9 @@ export default function Home() {
   useEffect(()=>{
     const fetcted = async() =>{
         try {
-        // const response:any = await axios.get('/api/test');
-        const response = await fetch('/api/test').then((data)=>data.json())
+        const response:any = await fetch(URL,headers)
+        .then(async(data:any)=> !data.ok ? console.log(data.status) : (await data.json()))
+        console.log(await response)
         setUsers(response)
       } catch (error) {
         console.error('Error fetching Users on index:', error)
@@ -31,13 +33,14 @@ export default function Home() {
   
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Passengers</Text>
-      {users.length === 0 && <LoadingScreen />}
-      {users && users.map((user:any)=>(
-        <View key={user.AccountNumber}>
-          <Text>{user.FirstName}</Text>
-        </View>
-      ))}
+      <Text style={styles.title}>MTLS Check</Text>
+              {users && users.map((user: any) => (
+          <View key={user.id}>
+            <Text style={styles.userTitle} numberOfLines={2} ellipsizeMode="tail">
+              {user.title}
+            </Text>
+          </View>
+        ))}
     </View>
   );
 }
@@ -47,6 +50,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  userTitle: {
+    fontSize: 16, 
   },
   title: {
     fontSize: 20,
@@ -67,5 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 5, 
   }
 });
+
+
 
 
