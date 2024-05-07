@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, FlatList} from 'react-native';
 import { Text, View } from '@/components/Themed';
 
 const LoadingScreen = () => {
@@ -33,30 +33,41 @@ export default function Home() {
     <View style={styles.container}>
       <Text style={styles.title}>Passengers</Text>
       {users.length === 0 && <LoadingScreen />}
-      {users && users.map((user:any)=>(
-        <View key={user.AccountNumber}>
-          <Text>{user.FirstName}</Text>
-        </View>
-      ))}
+      <FlatList
+        data={users}
+        keyExtractor={(item:any)=>String(item.AccountNumber)}
+        renderItem={({item})=>(
+          <View style={styles.item}>
+              <Text style={{color:"black"}}>{item.FirstName}</Text>
+          </View>
+        )}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginTop:30,
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent:'center',
+    alignItems:'center',
+    padding: 16,
+    backgroundColor: '#fff',
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
+    marginBottom: 16,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  item: {
+    backgroundColor: '#f5f5f5',
+    padding: 10,
+    marginVertical: 8,
+    borderRadius: 8,
+    width:200
   },
+
   loadingContainer: {
     position: 'absolute',
     top: 50,

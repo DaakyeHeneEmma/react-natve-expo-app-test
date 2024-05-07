@@ -1,6 +1,6 @@
 import { Keyboard, Pressable, StyleSheet, TextComponent } from 'react-native';
 import { useState, useEffect, ReactNode } from 'react';
-import { TextInput, Button, ActivityIndicator, Text, FlatList} from 'react-native';
+import { TextInput, Button, Text, FlatList} from 'react-native';
 import TestComponent from '@/components/TextComponet';
 
 
