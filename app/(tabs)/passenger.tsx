@@ -8,7 +8,7 @@ const headers =  {
   "method": "GET",
   "Content-Type": "application/json",
   'Access-Control-Allow-Origin': '*',
-  "User-Agent":mtlsCert(),
+  // "User-Agent":mtlsCert(),
 }
 
 const URL = process.env.EXPO_PUBLIC_SIT_API_DOMAIN+`/passenger/`

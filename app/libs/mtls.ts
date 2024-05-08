@@ -14,7 +14,6 @@ const mtlsCert = axios.create({
 })
 
 mtlsCert.interceptors.request.use(
-
   function(){
       const cert = process.env.EXPO_PUBLIC_SSL_CER_FILE!;
       const key = process.env.EXPO_PUBLIC_SSL_KEY_FILE!;
