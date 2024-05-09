@@ -5,7 +5,7 @@ const headers =  {
     "method": "GET",
     "Content-Type": "application/json",
     'Access-Control-Allow-Origin': '*',
-    "User-Agent":`${mtlsCert()}`
+    // "User-Agent":`${mtlsCert()}`
   }
   
 //parser for Passenger Users
@@ -16,10 +16,10 @@ const fetchData = async (url = URL) => {
   const data = response.data;
   const allData = data.results;
 
-  if (data.next) {
-    const moreData = await fetchData(data.next);
-    allData.push(...moreData);
-  }
+  // if (data.next) {
+  //   const moreData = await fetchData(data.next);
+  //   allData.push(...moreData);
+  // }
 
   return allData;
 };
