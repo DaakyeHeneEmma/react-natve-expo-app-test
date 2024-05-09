@@ -18,7 +18,7 @@ mtlsCert.interceptors.request.use(
       const cert = process.env.EXPO_PUBLIC_SSL_CER_FILE!;
       const key = process.env.EXPO_PUBLIC_SSL_KEY_FILE!;
   
-      const options: MtlsConfig = { 
+      const config: MtlsConfig = { 
         cert: Buffer.from(cert, 'base64').toString(),
         key: Buffer.from(key, 'base64').toString(),
         rejectUnauthorized:true,
@@ -26,7 +26,7 @@ mtlsCert.interceptors.request.use(
       };
       
       const axiosInstance:any = axios.create({
-        httpsAgent: options
+        httpsAgent: config
       });
       
       return axiosInstance 

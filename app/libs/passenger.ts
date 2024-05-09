@@ -1,12 +1,13 @@
 import mtlsCert from "./mtls";
 import axios from "axios";
 
+
 const config:any = {
  headers :  {
       "method": "GET",
       "Content-Type": "application/json",
       'Access-Control-Allow-Origin': '*',
-      // "User-Agent":mtlsCert(),
+      // "User-Agent": mtlsCert(),
       // "Authorization":mtlsCert(),
     }
 }
@@ -30,10 +31,10 @@ const fetchData = async (url = URL) => {
 
 
 
-export const getNUMBER = async(phone:string) =>{
-  const response = await fetch(`${URL}?search=${phone}`).then((data)=>data.json())
-  return await response.results;
- }
+// export const getNUMBER = async(phone:string) =>{
+//   const response = await fetch(`${URL}?search=${phone}`).then((data)=>data.json())
+//   return await response.results;
+//  }
 
  async function Passenger() {
   try {

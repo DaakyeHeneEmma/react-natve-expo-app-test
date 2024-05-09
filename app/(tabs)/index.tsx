@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import axios from 'axios';
 import { useState, useEffect, memo } from 'react';
 import { ActivityIndicator, FlatList } from 'react-native';
 import { Text, View } from '@/components/Themed';
+
 
 const LoadingScreen = () => {
   return (
@@ -18,7 +18,7 @@ const Fetcher = memo(function Fetcher(){
 })
 
 
- const Home =  memo(function Home(){
+ const Home =  () => {
   const [users, setUsers] = useState([]);
 
   useEffect(()=>{
@@ -48,7 +48,7 @@ const Fetcher = memo(function Fetcher(){
       />
     </View>
   );
-})
+}
 export default Home
 
 const styles = StyleSheet.create({

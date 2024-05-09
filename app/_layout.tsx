@@ -1,12 +1,15 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, useRouter} from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { SessionProvider } from './ctx';
+import { SessionProvider, useSession } from './ctx';
+import { Text } from '@/components/Themed';
 
-import { useColorScheme } from '@/components/useColorScheme';
+
+
+import { useColorScheme } from '@/components/useColorScheme'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -24,6 +27,16 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
   });
+  const { session, isLoading }:any = useSession;
+  const router = useRouter()
+
+  if(isLoading){
+    return <Text>Loading ...</Text>
+  }
+  if(!session){
+    console.log("session",session)
+    // router.push("/sign-in")
+  }
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
@@ -46,6 +59,7 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
+
   return (
     <SessionProvider>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -53,7 +67,6 @@ function RootLayoutNav() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
-
     </SessionProvider>
   );
 }
