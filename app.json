@@ -40,6 +40,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": "http://192.168.100.9:8081/"
+      },
+      "eas": {
+        "projectId": "84b078dc-b156-4728-b8af-6ab770ebf3a1"
+      }
     }
   }
 }
